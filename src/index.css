@@ -1,0 +1,159 @@
+@import "@fontsource-variable/geist";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #071b1f;
+    --foreground: #f4fffc;
+
+    --card: #0b252a;
+    --card-foreground: #f4fffc;
+
+    --popover: #0b252a;
+    --popover-foreground: #f4fffc;
+
+    --primary: #02f5a1;
+    --primary-foreground: #071b1f;
+
+    --secondary: #092126;
+    --secondary-foreground: #f4fffc;
+
+    --muted: #092126;
+    --muted-foreground: #92aaa5;
+
+    --accent: #073c34;
+    --accent-foreground: #02f5a1;
+
+    --destructive: #ef4444;
+
+    --border: #164047;
+    --input: #164047;
+    --ring: #02f5a1;
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: #071b1f;
+    font-family: "Geist Variable", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background: #071b1f;
+    color: #f4fffc;
+
+    font-family: "Geist Variable", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: rgba(2, 245, 161, 0.28);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .portfolio-container {
+    @apply mx-auto w-full max-w-8xl px-5 sm:px-6 lg:px-8 xl:px-10;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-24 lg:py-28 xl:py-32;
+  }
+
+  .section-badge {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium;
+
+    color: #02f5a1;
+    border: 1px solid rgba(2, 245, 161, 0.22);
+    background: rgba(2, 245, 161, 0.07);
+
+    box-shadow: 0 0 30px rgba(2, 245, 161, 0.06);
+  }
+
+  .portfolio-card {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(2, 245, 161, 0.025),
+        transparent
+      ),
+      #0b252a;
+
+    border: 1px solid #164047;
+    border-radius: 1.5rem;
+  }
+
+  .portfolio-card-hover {
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .portfolio-card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(2, 245, 161, 0.35);
+    box-shadow: 0 0 40px rgba(2, 245, 161, 0.08);
+  }
+
+  .portfolio-grid {
+    background-image:
+      linear-gradient(
+        rgba(2, 245, 161, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(2, 245, 161, 0.035) 1px,
+        transparent 1px
+      );
+
+    background-size: 48px 48px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #071b1f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #164047;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #02f5a1;
+}
