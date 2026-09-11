@@ -9,7 +9,6 @@ import {
 } from "lucide-react"
 
 import Container from "@/components/layout/Container"
-import image1 from "public/images/profile/mohamed-profile.jpeg"
 
 const highlights = [
   {
