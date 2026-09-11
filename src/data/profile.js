@@ -17,5 +17,5 @@ export const profile = {
   linkedin: "",
 
   resume:
-    "/resume/mohamed-ahmed-resume.pdf",
+    "/resume/Mohamed_Ahmed_Mahmoud.pdf",
 }

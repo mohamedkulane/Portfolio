@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 
 import Container from "@/components/layout/Container"
+import image1 from "public/images/profile/mohamed-profile.jpeg"
 
 const highlights = [
   {
@@ -223,7 +224,7 @@ function Hero() {
               delay: 0.2,
               ease: "easeOut",
             }}
-            className="relative mx-auto w-full max-w-[570px]"
+            className="relative order-first mx-auto w-full max-w-[570px] lg:order-last"
           >
             {/* Glow Behind Card */}
             <div className="absolute inset-10 -z-10 rounded-[3rem] bg-portfolio-green/[0.12] blur-[100px]" />
@@ -236,9 +237,9 @@ function Hero() {
 
               {/* Profile Image */}
               <img
-                src="/images/profile/profile.webp"
+                src="/images/profile/mohamedprofile.jpg"
                 alt="Mohamed Ahmed"
-                className="relative z-10 aspect-[4/5] w-full object-cover object-center"
+                className="relative z-10 aspect-[4/5] w-full object-cover object-top saturate-[0.92] transition-transform duration-700 hover:scale-[1.015]"
                 onError={(event) => {
                   event.currentTarget.style.display = "none"
                 }}
@@ -246,6 +247,15 @@ function Hero() {
 
               {/* Bottom Image Gradient */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-44 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+
+              <div className="absolute bottom-20 left-6 z-30">
+                <div className="text-xs font-medium uppercase tracking-[0.2em] text-portfolio-green">
+                  Mohamed Ahmed
+                </div>
+                <div className="mt-1 text-sm text-white/75">
+                  Software Engineer
+                </div>
+              </div>
 
               {/* Technology Floating Bar */}
               <div className="absolute bottom-5 left-1/2 z-30 -translate-x-1/2">

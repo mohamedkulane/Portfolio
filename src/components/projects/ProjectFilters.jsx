@@ -28,6 +28,7 @@ function ProjectFilters({
             key={filter}
             type="button"
             onClick={() => onChange(filter)}
+            aria-pressed={active}
             className={`
               relative
               inline-flex
@@ -45,10 +46,10 @@ function ProjectFilters({
               ${
                 active
                   ? `
-                    border-portfolio-green/25
-                    bg-[#1a2a17]
+                    border-portfolio-green/35
+                    bg-portfolio-green/[0.10]
                     text-portfolio-green
-                    shadow-[0_0_35px_rgba(124,241,90,0.20)]
+                    shadow-[0_0_35px_rgba(2,245,161,0.13)]
                   `
                   : `
                     border-white/[0.09]

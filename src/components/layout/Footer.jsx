@@ -1,4 +1,5 @@
 import {
+  Code2,
   Mail,
   MapPin,
 } from "lucide-react"
@@ -26,9 +27,9 @@ function Footer() {
           <div>
             <a
               href="#home"
-              className="text-2xl font-semibold text-[#02F5A1]"
+              className="flex items-center gap-2 text-2xl font-semibold text-[#02F5A1]"
             >
-              &lt;/&gt;{" "}
+              <Code2 className="h-6 w-6" aria-hidden="true" />
               {profile.firstName}
             </a>
 

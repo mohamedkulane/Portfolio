@@ -63,7 +63,7 @@ function About() {
             </div>
 
             <a
-              href="/resume/mohamed-ahmed-resume.pdf"
+              href="/resume/Mohamed_Ahmed_Mahmoud.pdf"
               download
               className="mt-9 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition-all duration-300 hover:bg-portfolio-green"
             >

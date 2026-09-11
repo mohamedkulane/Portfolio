@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 import {
   AnimatePresence,
   motion,
+  useInView,
 } from "framer-motion"
 
 import {
@@ -24,6 +25,13 @@ import {
 function Projects() {
   const [activeFilter, setActiveFilter] =
     useState("All")
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const carouselRef = useRef(null)
+  const sectionRef = useRef(null)
+  const headingInView = useInView(sectionRef, {
+    once: true,
+    amount: 0.2,
+  })
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -36,22 +44,67 @@ function Projects() {
     )
   }, [activeFilter])
 
-  const scrollProjects = (direction) => {
-    const container =
-      document.getElementById("project-grid")
-
-    if (!container) return
-
-    const amount =
-      container.clientWidth * 0.8
-
-    container.scrollBy({
-      left:
-        direction === "right"
-          ? amount
-          : -amount,
+  useEffect(() => {
+    carouselRef.current?.scrollTo({
+      left: 0,
       behavior: "smooth",
     })
+  }, [activeFilter])
+
+  const handleFilterChange = (filter) => {
+    setCurrentSlide(0)
+    setActiveFilter(filter)
+  }
+
+  const scrollToSlide = (index) => {
+    const container = carouselRef.current
+    const card = container?.querySelector(
+      `[data-project-index="${index}"]`
+    )
+
+    if (!card) return
+
+    container.scrollTo({
+      left: card.offsetLeft,
+      behavior: "smooth",
+    })
+    setCurrentSlide(index)
+  }
+
+  const scrollProjects = (direction) => {
+    const nextIndex =
+      direction === "right"
+        ? Math.min(
+            currentSlide + 1,
+            filteredProjects.length - 1
+          )
+        : Math.max(currentSlide - 1, 0)
+
+    scrollToSlide(nextIndex)
+  }
+
+  const handleCarouselScroll = () => {
+    const container = carouselRef.current
+    if (!container) return
+
+    const cards = [
+      ...container.querySelectorAll(
+        "[data-project-index]"
+      ),
+    ]
+    const closestIndex = cards.reduce(
+      (closest, card, index) => {
+        const distance = Math.abs(
+          card.offsetLeft - container.scrollLeft
+        )
+        return distance < closest.distance
+          ? { distance, index }
+          : closest
+      },
+      { distance: Number.POSITIVE_INFINITY, index: 0 }
+    )
+
+    setCurrentSlide(closestIndex.index)
   }
 
   return (
@@ -61,8 +114,9 @@ function Projects() {
         relative
         overflow-hidden
         bg-portfolio-background
-        py-24
-        lg:py-28
+        py-16
+        sm:py-20
+        lg:py-24
       "
     >
       {/* =========================================
@@ -99,54 +153,72 @@ function Projects() {
         "
       />
 
-      <Container className="relative z-10">
+      <Container
+        ref={sectionRef}
+        className="relative z-10"
+      >
 
         {/* =========================================
             HEADING
         ========================================= */}
 
-        <div className="flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={headingInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="flex flex-col items-center text-center"
+        >
           <SectionBadge icon={BriefcaseBusiness}>
             My Work
           </SectionBadge>
 
-          <h2
-            className="
-              mt-6
-              text-4xl
-              font-normal
-              tracking-[-0.045em]
-              text-white
-              sm:text-5xl
-              lg:text-[54px]
-            "
-          >
-            Featured Projects
-          </h2>
+          <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:gap-5">
+            <h2
+              className="
+                text-4xl
+                font-normal
+                tracking-[-0.05em]
+                text-white
+                sm:text-5xl
+                lg:text-[54px]
+              "
+            >
+              Featured Projects
+            </h2>
 
-          <p className="mt-4 max-w-xl text-base text-portfolio-muted">
-            Showcasing selected projects and
-            engineering work.
+            <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs font-medium text-portfolio-muted">
+              {projects.length} selected builds
+            </span>
+          </div>
+
+          <p className="mt-4 max-w-xl text-base leading-7 text-portfolio-muted">
+            A selection of products, platforms and
+            engineering systems built with care.
           </p>
-        </div>
+        </motion.div>
 
         {/* =========================================
             FILTERS
         ========================================= */}
 
-        <div className="mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={headingInView ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
+          className="mt-10"
+        >
           <ProjectFilters
             filters={projectFilters}
             activeFilter={activeFilter}
-            onChange={setActiveFilter}
+            onChange={handleFilterChange}
           />
-        </div>
+        </motion.div>
 
         {/* =========================================
             PROJECTS WRAPPER
         ========================================= */}
 
-        <div className="relative mx-auto mt-12 max-w-[1220px]">
+        <div className="relative mx-auto mt-10 max-w-[1280px]">
 
           {/* Left carousel control */}
           {filteredProjects.length > 2 && (
@@ -169,13 +241,14 @@ function Projects() {
                 justify-center
                 rounded-full
                 border border-white/15
-                bg-[#151815]/90
+                bg-[#111611]/95
                 text-white
                 shadow-xl
                 backdrop-blur-xl
                 transition-all
                 duration-300
-                hover:border-portfolio-green/30
+                hover:border-portfolio-green/45
+                hover:bg-portfolio-green/[0.08]
                 hover:text-portfolio-green
                 xl:flex
               "
@@ -186,14 +259,14 @@ function Projects() {
 
           {/* Project cards */}
           <motion.div
+            ref={carouselRef}
             id="project-grid"
             layout
-            className="
-              grid
-              gap-5
-              md:grid-cols-2
-              xl:grid-cols-3
-            "
+            onScroll={handleCarouselScroll}
+            className={`project-slider flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-3 ${
+              filteredProjects.length === 1 ? "justify-center" : ""
+            }`}
+            aria-label="Featured projects slider"
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map(
@@ -201,6 +274,7 @@ function Projects() {
                   <motion.div
                     layout
                     key={project.id}
+                    data-project-index={index}
                     initial={{
                       opacity: 0,
                       y: 20,
@@ -217,9 +291,15 @@ function Projects() {
                       scale: 0.98,
                     }}
                     transition={{
-                      duration: 0.3,
-                      delay: index * 0.04,
+                      duration: 0.45,
+                      delay: index * 0.06,
+                      ease: "easeOut",
                     }}
+                    className={`h-full flex-none snap-start ${
+                      filteredProjects.length === 1
+                        ? "w-[88%] md:w-[520px] xl:w-[420px]"
+                        : "w-[88%] md:w-[calc((100%_-_1.25rem)/2)] xl:w-[calc((100%_-_2.5rem)/3)]"
+                    }`}
                   >
                     <ProjectCard
                       project={project}
@@ -251,19 +331,39 @@ function Projects() {
                 justify-center
                 rounded-full
                 border border-white/15
-                bg-[#151815]/90
+                bg-[#111611]/95
                 text-white
                 shadow-xl
                 backdrop-blur-xl
                 transition-all
                 duration-300
-                hover:border-portfolio-green/30
+                hover:border-portfolio-green/45
+                hover:bg-portfolio-green/[0.08]
                 hover:text-portfolio-green
                 xl:flex
               "
             >
               <ChevronRight className="h-5 w-5" />
             </button>
+          )}
+
+          {filteredProjects.length > 1 && (
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {filteredProjects.map((project, index) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  onClick={() => scrollToSlide(index)}
+                  aria-label={`Show project ${index + 1}: ${project.title}`}
+                  aria-current={currentSlide === index ? "true" : undefined}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    currentSlide === index
+                      ? "w-8 bg-portfolio-green shadow-[0_0_16px_rgba(2,245,161,0.45)]"
+                      : "w-2 bg-white/20 hover:bg-white/45"
+                  }`}
+                />
+              ))}
+            </div>
           )}
         </div>
 

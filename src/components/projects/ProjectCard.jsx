@@ -1,6 +1,5 @@
 import {
   ExternalLink,
-  Image as ImageIcon,
   TrendingUp,
 } from "lucide-react"
 
@@ -9,38 +8,37 @@ import { FaGithub } from "react-icons/fa"
 import TechBadge from "@/components/projects/TechBadge"
 
 function ProjectCard({ project }) {
+  const fallbackImage = "/images/projects/clinic.jpeg"
+
   return (
     <article
       className="
         group
+        flex
+        h-full
+        flex-col
         overflow-hidden
-        rounded-[1.55rem]
-        border border-white/[0.08]
-        bg-[#0d100d]
+        rounded-[1.65rem]
+        border border-white/[0.09]
+        bg-[#0d110f]
         transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:border-portfolio-green/20
-        hover:shadow-[0_25px_70px_rgba(0,0,0,0.30)]
+        duration-500
+        hover:-translate-y-2
+        hover:border-portfolio-green/30
+        hover:bg-[#121a13]
+        hover:shadow-[0_20px_65px_rgba(0,0,0,0.38),0_0_0_1px_rgba(2,245,161,0.12),0_0_42px_rgba(2,245,161,0.09)]
       "
     >
       {/* Project Image */}
       <div
         className="
           relative
-          aspect-[16/10]
+          aspect-[16/9]
+          shrink-0
           overflow-hidden
-          bg-gradient-to-br
-          from-[#18191e]
-          via-[#101116]
-          to-[#17131d]
+          bg-[#111613]
         "
       >
-        {/* Placeholder */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <ImageIcon className="h-14 w-14 text-white/[0.08]" />
-        </div>
-
         {/* Real Project Image */}
         <img
           src={project.image}
@@ -51,12 +49,20 @@ function ProjectCard({ project }) {
             h-full
             w-full
             object-cover
-            transition-transform
-            duration-500
-            group-hover:scale-[1.035]
+            object-top
+            opacity-90
+            transition-[transform,opacity,filter]
+            duration-700
+            group-hover:scale-[1.025]
+            group-hover:opacity-100
+            group-hover:saturate-[1.12]
           "
           onError={(event) => {
-            event.currentTarget.style.display = "none"
+            if (event.currentTarget.src.endsWith(fallbackImage)) {
+              return
+            }
+
+            event.currentTarget.src = fallbackImage
           }}
         />
 
@@ -67,10 +73,7 @@ function ProjectCard({ project }) {
             absolute
             inset-0
             z-[11]
-            bg-gradient-to-t
-            from-black/35
-            via-transparent
-            to-black/10
+            bg-[linear-gradient(180deg,rgba(4,7,6,0.04)_0%,rgba(4,7,6,0.08)_42%,rgba(4,7,6,0.68)_100%)]
           "
         />
 
@@ -83,20 +86,24 @@ function ProjectCard({ project }) {
             z-20
             rounded-full
             border border-white/15
-            bg-black/55
+            bg-[#07100e]/75
             px-3
             py-1.5
             text-[11px]
             font-medium
             text-white
             backdrop-blur-md
+            transition-colors
+            duration-300
+            group-hover:border-portfolio-green/35
+            group-hover:text-portfolio-green
           "
         >
           {project.category}
         </span>
 
         {/* Actions */}
-        <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
+        <div className="absolute bottom-4 right-4 z-20 flex translate-y-1 items-center gap-2 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
@@ -111,7 +118,7 @@ function ProjectCard({ project }) {
                 justify-center
                 rounded-xl
                 border border-white/15
-                bg-[#151515]/90
+                bg-[#07100e]/85
                 text-white
                 backdrop-blur-xl
                 transition-all
@@ -138,7 +145,7 @@ function ProjectCard({ project }) {
                 justify-center
                 rounded-xl
                 border border-white/15
-                bg-[#151515]/90
+            bg-[#07100e]/85
                 text-white
                 backdrop-blur-xl
                 transition-all
@@ -154,27 +161,33 @@ function ProjectCard({ project }) {
       </div>
 
       {/* Project Information */}
-      <div className="p-6">
-        <h3
-          className="
-            text-xl
-            font-semibold
-            tracking-[-0.025em]
-            text-white
-            transition-colors
-            duration-300
-            group-hover:text-portfolio-green
-          "
-        >
-          {project.title}
-        </h3>
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-start justify-between gap-4">
+          <h3
+            className="
+              text-xl
+              font-semibold
+              tracking-[-0.03em]
+              text-white
+              transition-colors
+              duration-300
+              group-hover:text-portfolio-green
+            "
+          >
+            {project.title}
+          </h3>
 
-        <p className="mt-3 line-clamp-2 min-h-[48px] text-sm leading-6 text-portfolio-muted">
+          <span className="mt-1 shrink-0 text-[11px] font-medium uppercase tracking-[0.16em] text-white/25">
+            0{project.id}
+          </span>
+        </div>
+
+        <p className="mt-3 line-clamp-2 min-h-[48px] text-sm leading-6 text-portfolio-muted/95">
           {project.description}
         </p>
 
         {/* Technologies */}
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-5 flex min-h-[58px] flex-wrap content-start gap-2">
           {project.technologies.map((technology) => (
             <TechBadge key={technology}>
               {technology}
@@ -184,9 +197,9 @@ function ProjectCard({ project }) {
 
         {/* Project Highlight */}
         {project.highlight && (
-          <div className="mt-5 border-t border-white/[0.07] pt-4">
+          <div className="mt-auto border-t border-white/[0.08] pt-4">
             <div className="flex items-center gap-2 text-sm font-medium text-emerald-400">
-              <TrendingUp className="h-4 w-4" />
+              <TrendingUp className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
 
               <span>{project.highlight}</span>
             </div>

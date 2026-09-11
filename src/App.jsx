@@ -9,6 +9,7 @@ import Hero from "@/components/sections/Hero"
 import About from "@/components/sections/About"
 import TechStack from "@/components/sections/TechStack"
 import Skills from "@/components/sections/Skills"
+import Experience from "@/components/sections/Experience"
 import Projects from "@/components/sections/Projects"
 import Services from "@/components/sections/Services"
 import Testimonials from "@/components/sections/Testimonials"
@@ -24,6 +25,7 @@ function App() {
         <About />
         <TechStack />
         <Skills />
+        <Experience />
         <Projects />
         <Services />
         <Testimonials />

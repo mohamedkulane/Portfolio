@@ -8,6 +8,10 @@ export const navigation = [
     href: "#skills",
   },
   {
+    label: "Journey",
+    href: "#experience",
+  },
+  {
     label: "Projects",
     href: "#projects",
   },

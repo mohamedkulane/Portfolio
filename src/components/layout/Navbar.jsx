@@ -1,4 +1,5 @@
 import { navigation } from "@/data/navigation"
+import { Code2 } from "lucide-react"
 
 import Container from "@/components/layout/Container"
 import MobileNav from "@/components/layout/MobileNav"
@@ -13,9 +14,7 @@ function Navbar() {
             href="#home"
             className="flex items-center gap-2 text-lg font-semibold"
           >
-            <span className="font-bold text-portfolio-green">
-              &lt;/&gt;
-            </span>
+            <Code2 className="h-5 w-5 text-portfolio-green" aria-hidden="true" />
 
             <span className="text-portfolio-green">
               Mohamed
@@ -28,7 +27,7 @@ function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-portfolio-muted transition-colors duration-300 hover:text-white"
+                className="text-[19.3px] font-medium text-portfolio-muted transition-colors duration-300 hover:text-white"
               >
                 {item.label}
               </a>
@@ -38,7 +37,7 @@ function Navbar() {
           {/* Desktop CTA */}
           <a
             href="#contact"
-            className="hidden h-11 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition-all duration-300 hover:bg-portfolio-green lg:inline-flex"
+            className="hidden h-11 items-center justify-center rounded-full bg-white px-6 text-[16.5px] font-semibold text-black transition-all duration-300 hover:bg-portfolio-green lg:inline-flex"
           >
             Hire Me
           </a>

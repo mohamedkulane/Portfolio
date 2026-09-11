@@ -139,6 +139,15 @@
 
     background-size: 48px 48px;
   }
+
+  .project-slider {
+    scrollbar-width: none;
+    scroll-padding-inline: 0;
+  }
+
+  .project-slider::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 ::-webkit-scrollbar {

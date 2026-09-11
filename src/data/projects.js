@@ -10,8 +10,8 @@ export const projects = [
       "React",
       "TypeScript",
       "Node.js",
-      "PostgreSQL",
       "Prisma",
+      "PostgreSQL"
     ],
 
     image: "/images/projects/real-estate/cover.webp",
@@ -35,7 +35,7 @@ export const projects = [
       "Prisma",
     ],
 
-    image: "/images/projects/clinic/cover.webp",
+    image: "/images/projects/clinic.jpeg",
     github: "",
     liveUrl: "",
 
@@ -60,6 +60,73 @@ export const projects = [
     liveUrl: "",
 
     highlight: "Enrollment & reporting workflow",
+  },
+   {
+    id: 4,
+    title: "E-Learning Platform",
+    category: "Full Stack",
+    description:
+      "A course-only, single-tenant learning platform with public course sales, manual payment review, role-based dashboards, protected learning, progress tracking, and certificates.",
+
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "TanStack Query",
+      "Zustand",
+      "Zod"
+    ],
+
+    image: "/images/projects/e-leaning.jpeg",
+    github: "https://github.com/mohamedkulane/E-Learning_Plattform",
+    liveUrl: "https://dugsiiye.com/mentorship",
+
+    highlight: "Enrollment & reporting workflow",
+  },
+   {
+    id: 5,
+    title: "Attendance Management System",
+    category: "Full Stack",
+    description:
+      "A course-only, single-tenant learning platform with public course sales, manual payment review, role-based dashboards, protected learning, progress tracking, and certificates.",
+
+    technologies: [
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Mongoose",
+    "Tailwind",
+    "React"
+
+    ],
+
+    image: "/images/projects/school/cover.webp",
+    github: "https://github.com/mohamedkulane/Attedance",
+    liveUrl: "",
+
+    highlight: "efficiently track and manage daily attendance for students.",
+  },
+  {
+    id: 6,
+    title: "Website for SomSoft Systems",
+    category: "Frontend",
+    description:
+      "The official repository for the SomSoft website. This web application is built using React and Vite, styled with Tailwind CSS, and optimized for fast performance and a modern user interface.",
+
+    technologies: [
+    "Tailwind CSS",
+    "JavaScript",
+    "React.js",
+    "Typescript",
+    "Vite"
+
+    ],
+
+    image: "/images/projects/school/cover.webp",
+    github: "https://github.com/mohamedkulane/somsoftwebsite",
+    liveUrl: "",
+
+    highlight: "efficiently track and manage daily attendance for students.",
   },
 ]
 

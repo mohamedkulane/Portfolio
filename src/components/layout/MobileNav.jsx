@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Code2, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { navigation } from "@/data/navigation";
@@ -122,7 +122,7 @@ function MobileNav() {
                   onClick={() => setOpen(false)}
                   className="flex items-center gap-2 text-base font-semibold text-portfolio-green"
                 >
-                  <span className="font-bold">&lt;/&gt;</span>
+                  <Code2 className="h-4 w-4" aria-hidden="true" />
 
                   <span>Mohamed</span>
                 </a>

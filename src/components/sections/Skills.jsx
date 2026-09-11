@@ -10,7 +10,7 @@ function getLevelStyles(level) {
     return {
       badge:
         "border-portfolio-green/25 bg-portfolio-green/10 text-portfolio-green",
-      bar: "from-[#365832] to-[#7cf15a]",
+      bar: "bg-portfolio-green",
     }
   }
 
@@ -18,14 +18,14 @@ function getLevelStyles(level) {
     return {
       badge:
         "border-cyan-400/20 bg-cyan-400/10 text-cyan-300",
-      bar: "from-[#355a32] to-[#7cf15a]",
+      bar: "bg-portfolio-green",
     }
   }
 
   return {
     badge:
       "border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
-    bar: "from-[#2e5030] to-[#6ad94c]",
+    bar: "bg-portfolio-green",
   }
 }
 
@@ -33,7 +33,7 @@ function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-portfolio-background py-24 lg:py-28"
+      className="relative overflow-hidden bg-portfolio-background py-16 sm:py-20 lg:py-24"
     >
       {/* Background Glow Left */}
       <div
@@ -85,7 +85,7 @@ function Skills() {
         </div>
 
         {/* Skill Columns */}
-        <div className="mx-auto mt-14 grid max-w-[1180px] items-start gap-6 lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-[1180px] items-start gap-5 lg:grid-cols-3">
           {skillGroups.map((group, groupIndex) => (
             <motion.article
               key={group.title}
@@ -125,7 +125,7 @@ function Skills() {
 
               {/* Skills */}
               <div className="mt-5 space-y-5">
-                {group.skills.map((skill) => {
+                {group.skills.map((skill, skillIndex) => {
                   const Icon = skill.icon
                   const levelStyles =
                     getLevelStyles(skill.level)
@@ -176,7 +176,7 @@ function Skills() {
                       </div>
 
                       {/* Progress */}
-                      <div className="mt-3 h-[5px] overflow-hidden rounded-full bg-white/[0.045]">
+                      <div className="mt-3 h-[5px] overflow-hidden rounded-full bg-portfolio-green/[0.10]">
                         <motion.div
                           initial={{
                             width: 0,
@@ -188,13 +188,14 @@ function Skills() {
                             once: true,
                           }}
                           transition={{
-                            duration: 0.8,
-                            ease: "easeOut",
+                            duration: 1.15,
+                            delay: groupIndex * 0.08 + skillIndex * 0.06,
+                            ease: [0.22, 1, 0.36, 1],
                           }}
                           className={`
                             h-full
                             rounded-full
-                            bg-gradient-to-r
+                            shadow-[0_0_12px_rgba(2,245,161,0.28)]
                             ${levelStyles.bar}
                           `}
                         />
