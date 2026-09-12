@@ -12,7 +12,7 @@ import { FaGithub } from "react-icons/fa"
 import TechBadge from "@/components/projects/TechBadge"
 
 function ProjectCard({ project }) {
-  const fallbackImage = "/images/projects/clinic.jpeg"
+  const fallbackImage = "/images/projects/dashboard.png"
   const images = useMemo(() => {
     const sources = project.images?.length
       ? project.images
