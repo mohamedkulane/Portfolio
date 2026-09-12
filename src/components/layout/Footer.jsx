@@ -108,7 +108,7 @@ function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-[#164047] py-7 text-xs text-portfolio-subtle sm:flex-row sm:justify-between">
           <span>
-            © 2026 Mohamed Ahmed. All rights
+            © 2025 Mohamed Ahmed. All rights
             reserved.
           </span>
 

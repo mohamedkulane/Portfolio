@@ -27,7 +27,7 @@ function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-[19.3px] font-medium text-portfolio-muted transition-colors duration-300 hover:text-white"
+                className="text-[16px] font-medium text-portfolio-muted transition-colors duration-300 hover:text-white"
               >
                 {item.label}
               </a>

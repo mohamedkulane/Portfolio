@@ -1,36 +1,41 @@
 export const testimonials = [
   {
     id: 1,
-    name: "Client Name",
-    role: "Role / Company",
+    name: "Omar Abdulle",
+    role: "Majay Polyclinic Center",
     quote:
-      "Add a genuine client testimonial here once you receive feedback from a real client or collaborator.",
-    image:
-      "/images/testimonials/client-1.webp",
+      "Mohamed delivered a reliable clinic management system that simplified our daily operations, from pharmacy sales and inventory to reporting. The platform is easy to use and has made our workflow more organized and efficient.",
+    image: "",
     metric: "Result",
-    metricLabel: "Add a real project outcome",
-    placeholder: true,
+    metricTitle: "Streamlined Clinic Operations",
+    metricLabel:
+      "Centralized pharmacy, inventory, billing, and reporting in one system.",
+    rating: 5,
   },
   {
     id: 2,
-    name: "Client Name",
-    role: "Founder / Company",
+    name: "Abdullahi Abdinasir",
+    role: "Nidwa ICT Solutions",
     quote:
-      "Add a genuine client testimonial here once you receive feedback from a real client or collaborator.",
-    image: "/images/testimonials/client-2.webp",
+      "Mohamed built a modern, responsive website that represents our ICT services professionally and clearly. The final result improved how we present our company online and gave us a stronger digital presence.",
+    image: "",
     metric: "Impact",
-    metricLabel: "Add a measurable project outcome",
-    placeholder: true,
+    metricTitle: "Stronger Digital Presence",
+    metricLabel:
+      "Delivered a modern company website that presents services clearly and professionally.",
+    rating: 5,
   },
   {
     id: 3,
-    name: "Client Name",
-    role: "Product Lead / Company",
+    name: "Aweys Muxudin",
+    role: "Nasir Primary and Secondary School",
     quote:
-      "Add a genuine client testimonial here once you receive feedback from a real client or collaborator.",
-    image: "/images/testimonials/client-3.webp",
+      "Mohamed developed a practical school management system that made it easier for us to manage student records, attendance, and daily school operations. The system is simple to use, organized, and has improved how we handle our administrative work.",
+    image: "",
     metric: "Outcome",
-    metricLabel: "Add a real project outcome",
-    placeholder: true,
+    metricTitle: "Simplified School Operations",
+    metricLabel:
+      "Digitized student records, attendance tracking, and core administrative workflows.",
+    rating: 5,
   },
 ]

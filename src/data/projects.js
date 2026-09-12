@@ -14,11 +14,11 @@ export const projects = [
       "PostgreSQL"
     ],
 
-    image: "/images/projects/real-estate/cover.webp",
+    image: ["/images/projects/re.png","/images/projects/re.png","/images/projects/re.png"],
     github: "",
     liveUrl: "",
 
-    highlight: "Multi-branch architecture",
+    highlight: "Multi-branch rental & property operations",
   },
 
   {
@@ -35,34 +35,15 @@ export const projects = [
       "Prisma",
     ],
 
-    image: "/images/projects/clinic.jpeg",
+    image:[ "/images/projects/ds.png","/images/projects/pr.png","/images/projects/sal.png"],
     github: "",
     liveUrl: "",
 
-    highlight: "Role-based clinical workflow",
+    highlight: "End-to-end clinical & pharmacy workflow",
   },
 
-  {
-    id: 3,
-    title: "School Enrollment Platform",
-    category: "Web Apps",
-    description:
-      "Student enrollment and reporting application designed for efficient registration and administrative insights.",
-
-    technologies: [
-      "React",
-      "JavaScript",
-      "Tailwind",
-    ],
-
-    image: "/images/projects/school/cover.webp",
-    github: "",
-    liveUrl: "",
-
-    highlight: "Enrollment & reporting workflow",
-  },
    {
-    id: 4,
+    id: 3,
     title: "E-Learning Platform",
     category: "Full Stack",
     description:
@@ -77,14 +58,14 @@ export const projects = [
       "Zod"
     ],
 
-    image: "/images/projects/e-leaning.jpeg",
+    image:[ "/images/projects/ho.png","/images/projects/e-leaning.png","/images/projects/course.png"],
     github: "https://github.com/mohamedkulane/E-Learning_Plattform",
-    liveUrl: "https://dugsiiye.com/mentorship",
+    liveUrl: "",
 
-    highlight: "Enrollment & reporting workflow",
+    highlight: "Course sales, enrollment & payment workflow",
   },
    {
-    id: 5,
+    id: 4,
     title: "Attendance Management System",
     category: "Full Stack",
     description:
@@ -100,14 +81,14 @@ export const projects = [
 
     ],
 
-    image: "/images/projects/school/cover.webp",
+    image:[ "/images/projects/dashboard.png","/images/projects/students.png","/images/projects/da.png" ],
     github: "https://github.com/mohamedkulane/Attedance",
     liveUrl: "",
 
-    highlight: "efficiently track and manage daily attendance for students.",
+    highlight: "Student attendance, tracking & reporting workflow.",
   },
   {
-    id: 6,
+    id: 5,
     title: "Website for SomSoft Systems",
     category: "Frontend",
     description:
@@ -122,12 +103,37 @@ export const projects = [
 
     ],
 
-    image: "/images/projects/school/cover.webp",
+    image:["/images/projects/ni.png","/images/projects/ni.png","/images/projects/ni.png"],
     github: "https://github.com/mohamedkulane/somsoftwebsite",
     liveUrl: "",
 
-    highlight: "efficiently track and manage daily attendance for students.",
+    highlight: "track and manage daily attendance for students.",
   },
+  {
+  id: 6,
+  title: "Apo Market E-Commerce",
+  category: "Full Stack",
+  description:
+    "Modern supermarket e-commerce platform for browsing products, managing categories, shopping carts, customer accounts, and online orders.",
+
+  technologies: [
+    "React",
+    "Node.js",
+    "PostgreSQL",
+    "Prisma",
+  ],
+
+  image: [
+    "/images/projects/ecommerce-home.png",
+    "/images/projects/ecommerce-products.png",
+    "/images/projects/ecommerce-cart.png",
+  ],
+
+  github: "https://github.com/mohamedkulane/E-CommerceProject",
+  liveUrl: "https://e-commerce-project-eight-delta.vercel.app",
+
+  highlight: "Product catalog, cart & ordering workflow",
+},
 ]
 
 export const projectFilters = [

@@ -1,3 +1,7 @@
+import { useEffect, useMemo, useState } from "react"
+
+import { motion } from "framer-motion"
+
 import {
   ExternalLink,
   TrendingUp,
@@ -9,6 +13,44 @@ import TechBadge from "@/components/projects/TechBadge"
 
 function ProjectCard({ project }) {
   const fallbackImage = "/images/projects/clinic.jpeg"
+  const images = useMemo(() => {
+    const sources = project.images?.length
+      ? project.images
+      : Array.isArray(project.image)
+        ? project.image
+        : [project.image, project.image, project.image]
+
+    return sources.filter(Boolean).slice(0, 3)
+  }, [project.image, project.images])
+  const [activeImage, setActiveImage] = useState(0)
+
+  useEffect(() => {
+    setActiveImage(0)
+  }, [project.id])
+
+  useEffect(() => {
+    if (images.length < 2) return undefined
+
+    const interval = window.setInterval(() => {
+      setActiveImage((current) => (current + 1) % images.length)
+    }, 5200)
+
+    return () => window.clearInterval(interval)
+  }, [images.length])
+
+  useEffect(() => {
+    const preloadedImages = images.map((source) => {
+      const image = new window.Image()
+      image.src = source
+      return image
+    })
+
+    return () => {
+      preloadedImages.forEach((image) => {
+        image.src = ""
+      })
+    }
+  }, [images])
 
   return (
     <article
@@ -39,32 +81,28 @@ function ProjectCard({ project }) {
           bg-[#111613]
         "
       >
-        {/* Real Project Image */}
-        <img
-          src={project.image}
-          alt={project.title}
-          className="
-            relative
-            z-10
-            h-full
-            w-full
-            object-cover
-            object-top
-            opacity-90
-            transition-[transform,opacity,filter]
-            duration-700
-            group-hover:scale-[1.025]
-            group-hover:opacity-100
-            group-hover:saturate-[1.12]
-          "
-          onError={(event) => {
-            if (event.currentTarget.src.endsWith(fallbackImage)) {
-              return
-            }
+        {/* Animated project images */}
+        {images.map((image, index) => (
+          <motion.img
+            key={`${project.id}-${image}-${index}`}
+            src={image || fallbackImage}
+            alt={`${project.title} preview ${index + 1}`}
+            initial={false}
+            animate={{
+              opacity: index === activeImage ? 0.9 : 0,
+              scale: index === activeImage ? 1 : 1.012,
+            }}
+            transition={{ duration: 1.35, ease: "easeInOut" }}
+            className="absolute inset-0 z-10 h-full w-full object-cover object-top will-change-[opacity,transform] transition-[filter] duration-700 group-hover:saturate-[1.12]"
+            onError={(event) => {
+              if (event.currentTarget.src.endsWith(fallbackImage)) {
+                return
+              }
 
-            event.currentTarget.src = fallbackImage
-          }}
-        />
+              event.currentTarget.src = fallbackImage
+            }}
+          />
+        ))}
 
         {/* Image Overlay */}
         <div
@@ -158,6 +196,25 @@ function ProjectCard({ project }) {
             </a>
           )}
         </div>
+
+        {images.length > 1 && (
+          <div className="absolute bottom-4 left-4 z-20 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/45 px-2 py-1.5 backdrop-blur-md">
+            {images.map((image, index) => (
+              <button
+                key={`${image}-${index}`}
+                type="button"
+                onClick={() => setActiveImage(index)}
+                aria-label={`Show ${project.title} image ${index + 1}`}
+                aria-current={activeImage === index ? "true" : undefined}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeImage === index
+                    ? "w-5 bg-portfolio-green"
+                    : "w-1.5 bg-white/45 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Project Information */}

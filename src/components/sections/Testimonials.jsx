@@ -86,10 +86,17 @@ function Testimonials() {
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
                     />
                   ) : (
-                    <div className="flex h-full flex-col items-center justify-center bg-[#111913] p-8 text-center">
-                      <Quote className="h-16 w-16 text-portfolio-green/70" />
-                      <p className="mt-5 max-w-[190px] text-sm leading-6 text-portfolio-muted">
-                        Your next client story can live here.
+                    <div className="relative flex h-full flex-col items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,rgba(2,245,161,0.18),transparent_42%),linear-gradient(145deg,#16231b,#080c0a)] p-8 text-center">
+                      <div className="absolute -right-14 -top-14 h-44 w-44 rounded-full bg-portfolio-green/[0.10] blur-3xl" />
+                      <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-portfolio-green/35 bg-portfolio-green/[0.12] text-3xl font-semibold text-portfolio-green shadow-[0_0_45px_rgba(2,245,161,0.14)]">
+                        {testimonial.name
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")}
+                      </div>
+                      <Quote className="relative mt-6 h-10 w-10 text-portfolio-green/70" />
+                      <p className="relative mt-3 max-w-[210px] text-sm leading-6 text-portfolio-muted">
+                        Client success story
                       </p>
                     </div>
                   )}
@@ -100,9 +107,15 @@ function Testimonials() {
                     <div className="text-2xl font-semibold text-portfolio-green">
                       {testimonial.metric || "Client story"}
                     </div>
-                    <div className="mt-1 text-xs text-white/75">
-                      {testimonial.metricLabel || "Real feedback from a real collaboration"}
+                    <div className="mt-1 text-sm font-medium text-white/90">
+                      {testimonial.metricTitle || testimonial.metricLabel || "Real feedback from a real collaboration"}
                     </div>
+
+                    {testimonial.metricTitle && testimonial.metricLabel && (
+                      <div className="mt-1 text-xs leading-5 text-white/65">
+                        {testimonial.metricLabel}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

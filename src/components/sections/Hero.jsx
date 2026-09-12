@@ -223,12 +223,12 @@ function Hero() {
               delay: 0.2,
               ease: "easeOut",
             }}
-            className="relative order-first mx-auto w-full max-w-[570px] lg:order-last"
+            className="relative order-first mx-auto w-full max-w-[680px] lg:order-last"
           >
             {/* Glow Behind Card */}
             <div className="absolute inset-10 -z-10 rounded-[3rem] bg-portfolio-green/[0.12] blur-[100px]" />
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0c100d] shadow-2xl">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.11] bg-[#0c100d] shadow-[0_30px_90px_rgba(0,0,0,0.68),0_0_0_1px_rgba(0,0,0,0.28),0_0_55px_rgba(2,245,161,0.08)]">
               {/* Placeholder Background */}
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#101810] via-[#090c09] to-[#040604]">
                 <Code2 className="h-24 w-24 text-portfolio-green/[0.12]" />
@@ -249,7 +249,7 @@ function Hero() {
 
               <div className="absolute bottom-20 left-6 z-30">
                 <div className="text-xs font-medium uppercase tracking-[0.2em] text-portfolio-green">
-                  Mohamed Ahmed
+                  Mohamed Ahmed Mahmoud
                 </div>
                 <div className="mt-1 text-sm text-white/75">
                   Software Engineer
